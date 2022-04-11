@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
-export const ContactsView = styled.div`
-  display: block;
-  width: 45%;
-  @media screen and (min-width: 420px) and (max-width: 767px) {
-    width: 100%;
-  }
+export const Login = styled.div`
+  width: 350px;
+  margin: 0 auto;
 `;
 
 export const Title = styled.h2`
@@ -16,39 +13,43 @@ export const Title = styled.h2`
   width: 100%;
 `;
 
-export const Contacts = styled.ul`
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  list-style: none;
-`;
-
-export const ContactsItem = styled.li`
-  display: flex;
-  align-items: center;
-  height: 60px;
-  padding: 5px;
-  border-bottom: 1px solid #ffffff;
-  justify-content: space-between;
-  :not(:last-child) {
-    margin-bottom: 10px;
-  }
-`;
-
-export const ContactInfo = styled.div`
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin-right: 10px;
+  align-items: center;
+  width: 100%;
 `;
 
-export const ContactName = styled.span`
-  margin-bottom: 10px;
+export const FormLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
 `;
 
-export const DeleteButton = styled.button`
-  width: 110px;
+export const FormField = styled.span`
+  width: 100%;
+  margin-bottom: 15px;
+`;
+
+export const FormInput = styled.input`
+  width: 100%;
+  height: 40px;
+  padding-left: 20px;
+  border-radius: 20px;
+  border: 0;
+  outline: none;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.6), 0px 4px 4px rgba(0, 0, 0, 0.5),
+    1px 4px 6px rgba(0, 0, 0, 0.5), inset 0px 1px 1px rgba(0, 0, 0, 0.12),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.15), inset 1px 4px 6px rgba(0, 0, 0, 0.16);
+`;
+
+export const FormButton = styled.button`
+  width: 200px;
   height: 40px;
   padding: 4px;
+  margin-top: 15px;
   cursor: pointer;
   border: 0;
   border-radius: 20px;

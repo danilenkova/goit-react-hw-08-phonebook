@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { contactsOperations, contactsSelectors } from "../../redux/contacts";
 import { toast } from "react-toastify";
 import {
+  NewContact,
+  Title,
   StyledForm,
   FormLabel,
   FormField,
@@ -50,37 +52,40 @@ const ContactForm = () => {
   };
 
   return (
-    <StyledForm onSubmit={handelSubmit}>
-      <FormLabel>
-        <FormField>Name</FormField>
-        <FormInput
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          placeholder="Enter name"
-          autoComplete="off"
-          onChange={handleInputChange}
-          value={name}
-          required
-        />
-      </FormLabel>
-      <FormLabel>
-        <FormField>Number</FormField>
-        <FormInput
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          placeholder="Enter phone number"
-          autoComplete="off"
-          onChange={handleInputChange}
-          value={number}
-          required
-        />
-      </FormLabel>
-      <FormButton type="submit">Add contact</FormButton>
-    </StyledForm>
+    <NewContact>
+      <Title>Add new contact</Title>
+      <StyledForm onSubmit={handelSubmit}>
+        <FormLabel>
+          <FormField>Name</FormField>
+          <FormInput
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            placeholder="Enter name"
+            autoComplete="off"
+            onChange={handleInputChange}
+            value={name}
+            required
+          />
+        </FormLabel>
+        <FormLabel>
+          <FormField>Number</FormField>
+          <FormInput
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            placeholder="Enter phone number"
+            autoComplete="off"
+            onChange={handleInputChange}
+            value={number}
+            required
+          />
+        </FormLabel>
+        <FormButton type="submit">Add contact</FormButton>
+      </StyledForm>
+    </NewContact>
   );
 };
 

@@ -1,5 +1,22 @@
 import styled from "styled-components";
 
+export const NewContact = styled.div`
+  display: block;
+  width: 45%;
+  @media screen and (min-width: 420px) and (max-width: 767px) {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+`;
+
+export const Title = styled.h2`
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  width: 100%;
+`;
+
 export const StyledForm = styled.form`
   width: 100%;
 `;
@@ -33,6 +50,7 @@ export const FormButton = styled.button`
   width: 110px;
   height: 40px;
   padding: 4px;
+  margin-top: 15px;
   cursor: pointer;
   border: 0;
   border-radius: 20px;

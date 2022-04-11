@@ -1,37 +1,57 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { contactsOperations, contactsSelectors } from "../../redux/contacts";
-import Container from "../container";
-import { Section } from "../section";
-import ContactForm from "../form";
-import Filter from "../filter";
-import ContactList from "../contactList";
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import PrivateRoute from "../PrivateRoute";
+import PublicRoute from "../PublicRoute";
+import Loader from "../Loader";
+
+const HomePageView = lazy(() =>
+  import("../../views/HomePageView" /*webpackChunkName: "home-page" */)
+);
+const ContactsView = lazy(() =>
+  import("../../views/ContactsView" /*webpackChunkName: "contacts-page" */)
+);
+const AuthView = lazy(() =>
+  import("../../views/AuthView" /*webpackChunkName: "auth-page" */)
+);
+const LoginView = lazy(() =>
+  import("../../views/LoginView" /*webpackChunkName: "login-page" */)
+);
+const NotFoundPageView = lazy(() =>
+  import("../../views/NotFoundPageView" /*webpackChunkName: "not-found-page" */)
+);
 
 const Main = () => {
-  const contacts = useSelector(contactsSelectors.getContacts);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(contactsOperations.getContacts());
-  }, [dispatch]);
-
   return (
-    <section>
-      <Container>
-        <Section title="Add new contact">
-          <ContactForm />
-        </Section>
-        <Section title="Contacts">
-          {contacts.length ? (
-            <>
-              <Filter />
-              <ContactList />
-            </>
-          ) : (
-            <p>No contacts in PhoneBook</p>
-          )}
-        </Section>
-      </Container>
-    </section>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<HomePageView />} />
+        <Route
+          path="register"
+          element={
+            <PublicRoute redirectTo="/contacts">
+              <AuthView />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <PublicRoute redirectTo="/contacts">
+              <LoginView />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="contacts"
+          element={
+            <PrivateRoute redirectTo="/login">
+              <ContactsView />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<NotFoundPageView />} />
+      </Routes>
+    </Suspense>
   );
 };
 

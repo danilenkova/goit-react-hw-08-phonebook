@@ -7,7 +7,7 @@ import {
   FilterField,
   FilterInput,
 } from "./Filter.styled";
-import Reset from "../resetbutton";
+import Reset from "../Resetbutton";
 
 const Filter = () => {
   const dispatch = useDispatch();

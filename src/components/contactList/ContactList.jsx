@@ -1,4 +1,6 @@
 import {
+  ContactsView,
+  Title,
   Contacts,
   ContactsItem,
   ContactInfo,
@@ -7,6 +9,7 @@ import {
 } from "./ContactList.styled";
 import { useSelector, useDispatch } from "react-redux";
 import { contactsOperations, contactsSelectors } from "../../redux/contacts";
+import Filter from "../Filter";
 
 function ContactList() {
   const dispatch = useDispatch();
@@ -14,14 +17,16 @@ function ContactList() {
   const filter = useSelector(contactsSelectors.getFilter);
 
   return (
-    <>
+    <ContactsView>
+      <Title>Contacts</Title>
+      <Filter />
       {contacts.length ? (
         <Contacts>
-          {contacts.map(({ id, name, phone }) => (
+          {contacts.map(({ id, name, number }) => (
             <ContactsItem key={id}>
               <ContactInfo>
                 <ContactName>{name}</ContactName>
-                {phone}
+                {number}
               </ContactInfo>
               <DeleteButton
                 type="submit"
@@ -35,7 +40,7 @@ function ContactList() {
       ) : (
         <p>No contacts by name {filter.toUpperCase()} in PhoneBook</p>
       )}
-    </>
+    </ContactsView>
   );
 }
 
